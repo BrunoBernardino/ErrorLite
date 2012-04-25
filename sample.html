@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>errorLite - a Lightweight &amp; Simple jQuery input field validation plugin</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en_US" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<script src="http://www.google.com/jsapi"></script>
+	<script>
+		google.load("jquery", "1.7");
+	</script>
+
+	<script src="errorlite.js"></script>
+	<link rel="stylesheet" href="errorlite.css" media="all" />
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	border: none;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1em;
+	color: #666;
+}
+html,body {
+	width: 100%;
+	background: #FFFFFF;
+}
+#wrapper {
+	margin: 50px auto;
+	width: 600px;
+	background: #EFEFEF;
+	display: block;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+#wrapper > #content {
+	padding: 10px;
+	display: block;
+}
+#wrapper > #content h1 {
+	padding: 10px;
+	display: block;
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #999;
+	text-align: center;
+}
+#wrapper > #content p {
+	margin: 10px 0 0 0;
+	font-size: .8em;
+}
+#wrapper > #content fieldset {
+	margin: 10px 0 0 0;
+	display: block;
+	font-size: .8em;
+}
+#wrapper > #content fieldset label {
+	float: left;
+	width: 90px;
+	line-height: 2.1em;
+}
+#wrapper > #content fieldset input {
+	padding: 5px 10px;
+	border: 1px solid #CCC;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	width: 300px;
+}
+#wrapper > #content fieldset p {
+	padding-left: 90px;
+}
+#wrapper > #content button {
+	margin: 10px 0 10px 90px;
+	padding: 10px;
+	background: #096;
+	color: #FFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+#wrapper > #content button:hover {
+	background: #6C9;
+	color: #666;
+}
+</style>
+<script>
+$(document).ready(function() {
+	$('#loginForm').live('submit', function() {
+		var shouldTheFormSubmit = true;
+		
+		if (!eL_validateField('emailField','email')) {
+			shouldTheFormSubmit = false;
+		}
+
+		if (!eL_validateField('passwordField')) {
+			shouldTheFormSubmit = false;
+		}
+
+		if (!shouldTheFormSubmit) {
+			return false;
+		}
+
+		alert('Congrats, no errors!');
+		return false;//-- For sample purposes, I'm not allowing the form to submit
+	});
+});
+
+//-- Sample function to Validate fields using errorLite, you don't actually need this and can implement it in your own way
+function eL_validateField(fID, type) {
+	if (!type) type = 'common';
+
+	var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+	
+	switch (type) {
+		case 'common':
+			if ($("#" + fID).val().length < 1) {
+				$("#" + fID).errorLite();//-- Show Error
+				return false;
+			} else {
+				$("#errorLite-" + fID).click();//-- Hide Error
+			}
+		break;
+		case 'email':
+			if ($("#" + fID).val().length < 2) {
+				$("#" + fID).errorLite();//-- Show Error
+				return false;
+			} else {
+				var tmpS = $("#" + fID).val();
+				if (!emailPattern.test(tmpS)) {
+					$("#" + fID).errorLite({ msgTxt: "Invalid"});//-- Show Error
+					return false;
+				} else {
+					$("#errorLite-" + fID).click();//-- Hide Error
+				}
+			}
+		break;
+	}
+	return true;
+}
+</script>
+
+</head>
+<body>
+	<div id="wrapper">
+		<div id="content">
+			<h1>errorLite Sample</h1>
+			<p>To view the errors, you can simply submit the form (the events can be triggered on .blur() also, for example).</p>
+			<form id="loginForm" action="">
+				<fieldset>
+					<label>Email:</label>
+					<input type="text" name="email" id="emailField" value="" /><!-- On HTML5, you should use type="email", for enhanced usability -->
+					<p>This field will show an error, if it's not a valid email address.</p>
+				</fieldset>
+				<fieldset>
+					<label>Password:</label>
+					<input type="password" name="password" id="passwordField" value="" />
+					<p>This field will show an error, if it's empty.</p>
+				</fieldset>
+				<fieldset>
+					<label>Phone:</label>
+					<input type="text" name="phone" id="phoneField" value="" /><!-- On HTML5, you should use type="phone", for enhanced usability -->
+					<p>This field won't show an error.</p>
+				</fieldset>
+				<button type="submit">Validate</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
