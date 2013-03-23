@@ -8,20 +8,24 @@ It's built off of Chapter 2 of Pro jQuery Plugins ( http://projqueryplugins.com 
 
 Get https://raw.github.com/BrunoBernardino/ErrorLite/master/jquery.errorlite.min.js and https://raw.github.com/BrunoBernardino/ErrorLite/master/jquery.errorlite.css, include them in your site and call the following (supposing you'd want input validation on all inputs in a .sample-form form element):
 
-> $(".sample-form input").errorLite({
->		'animation': {
->			'type': "fade",
->			'speed': "fast",
->			'easing': "linear",
->			'extra': {
->				'margin': 3
->			}
->		}
->	});
+```javascript
+$(".sample-form input").errorLite({
+	'animation': {
+		'type': "fade",
+		'speed': "fast",
+		'easing': "linear",
+		'extra': {
+			'margin': 3
+		}
+	}
+});
+```
 
 If you don't want to validate automatically, set 'autoCheck' option as false, and to validate a field, after initializing, use:
 
-> $('.sample-form input[name="email"]').errorLite('validate');
+```javascript
+$('.sample-form input[name="email"]').errorLite('validate');
+```
 
 It will return false if the field is not valid, true if it is valid.
 
