@@ -9,15 +9,15 @@ It's built off of Chapter 2 of Pro jQuery Plugins ( http://projqueryplugins.com 
 Get https://raw.github.com/BrunoBernardino/ErrorLite/master/jquery.errorlite.min.js and https://raw.github.com/BrunoBernardino/ErrorLite/master/jquery.errorlite.css, include them in your site and call the following (supposing you'd want input validation on all inputs in a .sample-form form element):
 
 > $(".sample-form input").errorLite({
-		'animation': {
-			'type': "fade",
-			'speed': "fast",
-			'easing': "linear",
-			'extra': {
-				'margin': 3
-			}
-		}
-	});
+>		'animation': {
+>			'type': "fade",
+>			'speed': "fast",
+>			'easing': "linear",
+>			'extra': {
+>				'margin': 3
+>			}
+>		}
+>	});
 
 If you don't want to validate automatically, set 'autoCheck' option as false, and to validate a field, after initializing, use:
 
@@ -54,9 +54,9 @@ It will return false if the field is not valid, true if it is valid.
 * errorClass:          "errorLite-error"
 * position:            "inside" # Supports 'inside' and 'outside'
 * animation:
-** type:       "fade" # Supports 'fade' and 'slide'
-** speed:      "fast"
-** easing:     "swing"
-** onComplete: $.noop
-** extra:
-*** margin: 3 # Integer, the number of pixels to be "inside" or "outside" the input
+	* type:       "fade" # Supports 'fade' and 'slide'
+	* speed:      "fast"
+	* easing:     "swing"
+	* onComplete: $.noop
+	* extra:
+		* margin: 3 # Integer, the number of pixels to be "inside" or "outside" the input
