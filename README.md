@@ -10,7 +10,7 @@ Get https://raw.github.com/BrunoBernardino/ErrorLite/master/jquery.errorlite.min
 
 ```javascript
 $(".sample-form input").errorLite({
-	'animation': {
+	'animation': {
 		'type': "fade",
 		'speed': "fast",
 		'easing': "linear",
